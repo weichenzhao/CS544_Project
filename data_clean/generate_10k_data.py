@@ -6,7 +6,7 @@ import random
 start = time.time()
 standard = 10000
 test_standard = 1000
-data = open('2m_dataset.txt', 'r')
+data = open('../2m_dataset.txt', 'r')
 data_dict = json.load(data)
 print "loading data used", time.time() - start, "seconds"
 
@@ -41,7 +41,14 @@ while tot_count < standard:
         print "progress: ", tot_count * 100 /standard, "%", tot_count
 
 print(len(new_data))
-json.dump(new_data, open('10k_data.txt', 'w'))
+convert = {}
+for k in new_data:
+    for k_id in new_data[k]:
+        # k_id - 'id'
+        # new_data[k] - {'id', ['','','','']}
+        convert[k_id] = new_data[k][k_id]
+
+json.dump(convert, open('10k_data.txt', 'w'))
 #pdb.set_trace()
 
 """
