@@ -71,4 +71,6 @@ mlb = preprocessing.MultiLabelBinarizer()
 std = mlb.fit_transform(standard)
 rst = mlb.fit_transform(result)
 
-print "\nsklearn f1-score:", metrics.f1_score(std, rst, average='weighted') * 100
+print "\nsklearn f1-score (weighted):", metrics.f1_score(std, rst, average='weighted') * 100
+print "sklearn f1-score    (micro):", metrics.f1_score(std, rst, average='micro') * 100
+print "sklearn f1-score    (macro):", metrics.f1_score(std, rst, average='macro') * 100
