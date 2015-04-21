@@ -63,4 +63,12 @@ fscore = 2 * precision * recall / ( precision + recall )
 
 print "Presicion: ", precision
 print "Recall: ", recall
-print "f-score: ", fscore
+print "F-score: ", fscore
+
+from sklearn import metrics
+from sklearn import preprocessing
+mlb = preprocessing.MultiLabelBinarizer()
+std = mlb.fit_transform(standard)
+rst = mlb.fit_transform(result)
+
+print "\nsklearn f1-score:", metrics.f1_score(std, rst, average='weighted') * 100
