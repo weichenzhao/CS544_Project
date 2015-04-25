@@ -1,0 +1,14 @@
+1. data description 
+
+The data set comes from one of Kaggle challenges [1], which is also available from stack exchange website. The data set contains 6034195 questions which consists of question id, title, body, code and tags. The question id is an unique id for each question, title and body are the description of question, also, many question include non-natural language content (e.g. error message, sample code, etc) in code section. For tags, each question have one or more tags, indicating related keyword or technique.
+
+example question:
+id: 40135
+tags: c# asp.net datetime if-statement
+title: InvoiceDate < INvoiceDate.Addmonths(-)
+body: I have a statement...\n\nThis checks the date on the Invoice, if it is less than 12 months ago I.E anything before Jan 2012, proceed with the code.\nSo instead of dateTime.Now.AddMonths(-12)) I want to say 6 months from the date on the invoice\nI've tried...\n\nAlso tried without the (-0) and just had it as (0) but need the - for the expression.\nAnyway it's not returning what it should be. What am I doing wrong?\n
+code: if (lastInvoice.Invoice_Date < DateTime.Now.AddMonths(-12))
+
+One concentration of this project is the 42048 unique tags. For each question, the number of tags varies between 1 to 5, and on average, there are 2.885 tags per question. The distribution of tags are not even, among all tags, more than 75% tags appeared less than 100 times. And also, only around 5% tags appears more than 1000 times, which is a number that make some sense to classification. Considering the necessary number of training sample and the complexity of training process, we choose to use the top 100 popular tags, which according to [following graph] have decent coverage of questions and total appearance count of tags.
+
+[With the previous decision, we are able to reduce the size of data set. To do this, we extracted one million questions from the original dataset as the new data set. The new data set make sure that for each tag in the 100 popular tags, there are at least 10k questions contain it. Since the challenge is finished, we have no access to the test data. Therefore, we need to separate some question from the data set as test set.]
